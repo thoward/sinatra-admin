@@ -1,0 +1,49 @@
+<%content_for :breadcrumb do%>
+        <ul class="breadcrumb">
+            <li><a href="/">Home</a> <span class="divider">/</span></li>
+            <li class="active">Calendar</li>
+        </ul>
+<%end%>
+
+<%content_for :title do%>
+<div class="stats">
+    <p class="stat"><span class="number">5</span>users</p>
+    <p class="stat"><span class="number">19</span>Events</p>
+</div>
+<%end%>
+
+
+<link rel='stylesheet' type='text/css' href='lib/fullcalendar-1.5.3/fullcalendar/fullcalendar.css' />
+<link rel='stylesheet' type='text/css' href='lib/fullcalendar-1.5.3/fullcalendar/fullcalendar.print.css' media='print' />
+<script type='text/javascript' src='lib/fullcalendar-1.5.3/fullcalendar/fullcalendar.min.js'></script>
+
+<script type='text/javascript'>
+
+	$(document).ready(function() {
+
+		var date = new Date();
+		var d = date.getDate();
+		var m = date.getMonth();
+		var y = date.getFullYear();
+
+		$('#calendar').fullCalendar({
+            header: false,
+		});
+        $('#calendar').fullCalendar('next');
+
+	});
+
+</script>
+<style type='text/css'>
+
+	#calendar {
+		width: 100%;
+		margin: 0 auto;
+		}
+
+</style>
+
+
+
+<h2>Upcoming Events</h2>
+<div id='calendar'></div>

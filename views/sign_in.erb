@@ -1,0 +1,23 @@
+<div class="row-fluid">
+    <div class="dialog">
+        <div class="block">
+            <p class="block-heading">Sign In</p>
+            <div class="block-body">
+                <form action="/sign_in" method="post" autocomplete="on">
+                    <label>Email</label>
+                    <input type="text" class="span12" name="email">
+                    <label>Password</label>
+                    <input type="password" class="span12" name="password">
+                    <p><a  href="/reset_password">Forgot your password?</a>
+                    <label class="remember-me pull-right"><input type="checkbox" name="remember"> Remember me</label></p>
+                    <input class="btn btn-primary" type="submit" value="Sign In">
+                    <hr />            
+                    <h2><a href="/auth/github" class="btn btn-primary"><img src="/images/github.png" /> Sign In With Github</a></h2>
+                    <div class="clearfix"></div>
+                </form>
+            </div>
+        </div>
+        <p class="pull-right" style=""><a href="http://www.portnine.com" target="blank">Theme by Portnine</a></p>
+    </div>
+</div>
+

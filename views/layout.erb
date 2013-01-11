@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title><%= layout[:title] || "Bootstrap Admin" %></title>
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link rel="stylesheet" type="text/css" href="/lib/bootstrap/css/bootstrap.css">
+    <%#<link rel="stylesheet" type="text/css" href="/lib/bootstrap/css/bootstrap-responsive.css">%>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/theme.css">
+    <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.css">
+
+    <script src="lib/jquery-1.7.2.min.js" type="text/javascript"></script>
+
+    <!-- Demo page code -->
+
+    <style type="text/css">
+        #line-chart {
+            height:300px;
+            width:800px;
+            margin: 0px auto;
+            margin-top: 1em;
+        }
+        .brand { font-family: georgia, serif; }
+        .brand .first {
+            color: #ccc;
+            font-style: italic;
+        }
+        .brand .second {
+            color: #fff;
+            font-weight: bold;
+        }
+    </style>
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="/../assets/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/../assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/../assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="/../assets/ico/apple-touch-icon-57-precomposed.png">
+  </head>
+
+  <!--[if lt IE 7 ]> <body class="ie ie6"> <![endif]-->
+  <!--[if IE 7 ]> <body class="ie ie7 <%=layout[:body_tag]%>"> <![endif]-->
+  <!--[if IE 8 ]> <body class="ie ie8 <%=layout[:body_tag]%>"> <![endif]-->
+  <!--[if IE 9 ]> <body class="ie ie9 <%=layout[:body_tag]%>"> <![endif]-->
+  <!--[if (gt IE 9)|!(IE)]><!--> 
+  <body class="<%=layout[:body_tag]%>"> 
+  <!--<![endif]-->
+    <%unless layout[:show_header] == false%>
+    <div class="navbar">
+        <div class="navbar-inner">
+                <ul class="nav pull-right">
+                    <%unless layout[:show_user] == false%>
+                    <!-- <li><a href="/#" class="hidden-phone visible-tablet visible-desktop" role="button">Settings</a></li> -->
+                    <li id="fat-menu" class="dropdown">
+                        <a href="/#" role="button" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="icon-user"></i> <%= current_user[:nickname] %>
+                            <i class="icon-caret-down"></i>
+                        </a>
+
+                        <ul class="dropdown-menu">
+                            <li><a tabindex="-1" href="https://github.com/settings/profile">My Account</a></li>
+                            <li class="divider"></li>
+                            <!-- <li><a tabindex="-1" class="visible-phone" href="/#">Settings</a></li>
+                            <li class="divider visible-phone"></li> -->
+                            <li><a tabindex="-1" href="/sign_out">Logout</a></li>
+                        </ul>
+                    </li>
+                    <%end%>
+                </ul>
+                <a class="brand" href="/"><span class="second">Admin Console</span></a>
+        </div>
+    </div>
+    <%end%>
+
+
+    <%unless layout[:show_menu] == false %>
+    <div class="sidebar-nav">
+        <form class="search form-inline">
+            <input type="text" placeholder="Search...">
+        </form>
+
+        <a href="/#dashboard-menu" class="nav-header" data-toggle="collapse"><i class="icon-dashboard"></i>Dashboard</a>
+        <ul id="dashboard-menu" class="nav nav-list collapse<%=expand_if(layout[:menu_expand], 'dashboard')%>">
+            <li><a href="/">Home</a></li>
+            <%=menu_item(layout[:menukey], 'Users', 'Sample List')%>
+            <%=menu_item(layout[:menukey], 'User', 'Sample Item')%>
+            <%=menu_item(layout[:menukey], 'Media')%>
+            <%=menu_item(layout[:menukey], 'Calendar')%>
+            <%#=menu_item(layout[:menukey], 'Contact Us')%>
+        </ul>
+
+        <a href="/#accounts-menu" class="nav-header" data-toggle="collapse"><i class="icon-briefcase"></i>Account<span class="label label-info">+3</span></a>
+        <ul id="accounts-menu" class="nav nav-list collapse">
+            <%=menu_item(layout[:menukey], 'Sign In')%>
+            <%=menu_item(layout[:menukey], 'Sign Up')%>
+            <%=menu_item(layout[:menukey], 'Reset Password')%>
+        </ul>
+
+        <a href="/#error-menu" class="nav-header collapsed" data-toggle="collapse"><i class="icon-exclamation-sign"></i>Error Pages <i class="icon-chevron-up"></i></a>
+        <ul id="error-menu" class="nav nav-list collapse">
+            <%=menu_item(layout[:menukey], '403', '403 page')%>
+            <%=menu_item(layout[:menukey], '404', '404 page')%>
+            <%=menu_item(layout[:menukey], '500', '500 page')%>
+            <%=menu_item(layout[:menukey], '503', '503 page')%>
+        </ul>
+
+        <a href="/#legal-menu" class="nav-header" data-toggle="collapse"><i class="icon-legal"></i>Legal</a>
+        <ul id="legal-menu" class="nav nav-list collapse<%=expand_if(layout[:menu_expand], 'legal')%>">
+            <%=menu_item(layout[:menukey], 'Privacy Policy')%>
+            <%=menu_item(layout[:menukey], 'Terms and Conditions')%>
+        </ul>
+
+        <a href="/help" class="nav-header" ><i class="icon-question-sign"></i>Help</a>
+        <a href="/faq" class="nav-header" ><i class="icon-comment"></i>Faq</a>
+    </div>
+    <%end%>
+
+    <%unless layout[:is_dialog] %>
+    <div class="content">
+        <%unless blank?(layout[:header_text]) %>
+        <div class="header">
+            <%= yield_content :title %>
+            <h1 class="page-title"><%=layout[:header_text]%></h1>
+        </div>
+        <%end%>
+        <%= yield_content :breadcrumb %>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                    <%= yield %>
+
+                    <%unless layout[:show_footer] == false %>
+                    <footer>
+                        <hr>
+                        <!-- Purchase a site license to remove this link from the footer: http://www.portnine.com/bootstrap-themes -->
+                        <p class="pull-right">A <a href="http://www.portnine.com/bootstrap-themes" target="_blank">Free Bootstrap Theme</a> by <a href="http://www.portnine.com" target="_blank">Portnine</a></p>
+                        
+
+                        <p>&copy; 2012 <a href="http://www.portnine.com" target="_blank">Portnine</a></p>
+                    </footer>
+                    <%end%>
+            </div>
+        </div>
+    </div>
+    <%else%>
+        <%= yield %>
+    <%end%>
+
+
+    <script src="lib/bootstrap/js/bootstrap.js"></script>
+    <script type="text/javascript">
+        $("[rel=tooltip]").tooltip();
+        $(function() {
+            $('.demo-cancel-click').click(function(){return false;});
+        });
+    </script>
+    
+  </body>
+</html>
+
+

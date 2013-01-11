@@ -1,0 +1,54 @@
+<%content_for :breadcrumb do%>
+        <ul class="breadcrumb">
+            <li><a href="/">Home</a> <span class="divider">/</span></li>
+            <li class="active">Gallery</li>
+        </ul>
+<%end%>
+
+<%content_for :title do%>
+<div class="stats">
+    <p class="stat"><span class="number">48</span>images</p>
+    <p class="stat"><span class="number">4</span>galleries</p>
+</div>
+<%end%>
+
+    <div class="block">
+        <p class="block-heading">Gallery of Things</p>
+        <div class="block-body gallery">
+            <%for i in 1..5%>
+                <img src="images/140x140.gif" class="img-polaroid">
+            <%end%>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+
+    <div class="row-fluid">
+        <div class="block span6">
+            <p class="block-heading">Gallery of Stuff</p>
+            <div class="block-body gallery">
+                <%for i in 1..4%>
+                    <img src="images/170x170.gif" class="img-polaroid">
+                <%end%>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="block span6">
+            <p class="block-heading">Gallery of Stuff</p>
+            <div class="block-body gallery">
+                <%for i in 1..4%>
+                    <img src="images/170x170.gif" class="img-polaroid">
+                <%end%>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="block">
+        <p class="block-heading">Gallery of Stuff</p>
+        <div class="block-body gallery">
+            <%for i in 1..10%>
+                <img src="images/140x140.gif" class="img-polaroid">
+            <%end%>
+            <div class="clearfix"></div>
+        </div>
+    </div>
