@@ -96,6 +96,9 @@ hr {
   border-left: 1px solid #000000;
   border-left: 1px solid #111;
 }
+.content-standalone { 
+  margin-right: 240px;
+}
 .header {
   background: #ffffff;
   background: #ffffff;

@@ -68,8 +68,10 @@
                         </a>
 
                         <ul class="dropdown-menu">
-                            <li><a tabindex="-1" href="https://github.com/settings/profile">My Account</a></li>
+                            <%if current_user[:settings_url] %>
+                            <li><a tabindex="-1" href="<%=current_user[:settings_url]%>">My Account</a></li>
                             <li class="divider"></li>
+                            <%end%>
                             <!-- <li><a tabindex="-1" class="visible-phone" href="/#">Settings</a></li>
                             <li class="divider visible-phone"></li> -->
                             <li><a tabindex="-1" href="/sign_out">Logout</a></li>
@@ -92,11 +94,12 @@
         <a href="/#dashboard-menu" class="nav-header" data-toggle="collapse"><i class="icon-dashboard"></i>Dashboard</a>
         <ul id="dashboard-menu" class="nav nav-list collapse<%=expand_if(layout[:menu_expand], 'dashboard')%>">
             <li><a href="/">Home</a></li>
+            <%=menu_item(layout[:menukey], 'Media')%>
+            <%if current_user[:admin] %>
             <%=menu_item(layout[:menukey], 'Users', 'Sample List')%>
             <%=menu_item(layout[:menukey], 'User', 'Sample Item')%>
-            <%=menu_item(layout[:menukey], 'Media')%>
             <%=menu_item(layout[:menukey], 'Calendar')%>
-            <%#=menu_item(layout[:menukey], 'Contact Us')%>
+            <%end%>
         </ul>
 
         <a href="/#accounts-menu" class="nav-header" data-toggle="collapse"><i class="icon-briefcase"></i>Account<span class="label label-info">+3</span></a>
@@ -126,7 +129,7 @@
     <%end%>
 
     <%unless layout[:is_dialog] %>
-    <div class="content">
+    <div class="content <%= layout[:show_menu] ? "" : "content-standalone" %>">
         <%unless blank?(layout[:header_text]) %>
         <div class="header">
             <%= yield_content :title %>
